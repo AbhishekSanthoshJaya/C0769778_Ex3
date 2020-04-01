@@ -1,5 +1,6 @@
 package com.aby.day3project;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.VoiceInteractor;
@@ -9,11 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class FirstActivity extends AppCompatActivity {
 
     private Button btnNext;
     private EditText edtName;
+    private TextView txtResult;
     public static int REQUEST_UPPERCASE = 100;
 
     @Override
@@ -23,6 +26,7 @@ public class FirstActivity extends AppCompatActivity {
 
         btnNext = findViewById(R.id.btnNext);
         edtName = findViewById(R.id.edtName);
+        txtResult = findViewById(R.id.txtResult);
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,5 +37,23 @@ public class FirstActivity extends AppCompatActivity {
                 startActivityForResult(mIntent, REQUEST_UPPERCASE);
             }
         });
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK)
+        {
+            if(requestCode == REQUEST_UPPERCASE)
+            {
+                String finalString = data.getStringExtra("finalString");
+                //Toast.makeText(FirstActivity.this, newCountryName, Toast.LENGTH_SHORT).show();;
+                txtResult.setText(finalString);
+            }
+        }
+
+
     }
 }
