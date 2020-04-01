@@ -12,13 +12,14 @@ public class OptionsActivity extends AppCompatActivity {
 
     private EditText edtName;
     private Button btnUppercase;
+    private Button btnLowercase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
         btnUppercase = findViewById(R.id.btnUppercase);
-
+        btnLowercase = findViewById(R.id.btnLowercase);
         edtName = findViewById(R.id.edtName);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -30,18 +31,24 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String finalString = edtName.getText().toString().trim().toUpperCase();
-                if(finalString.isEmpty())
-                {
-                    edtName.setError("Enter Country Name");
-                }
-                else
-                {
-                    Intent mIntent = new Intent();
-                    mIntent.putExtra("finalString", finalString);
-                    setResult(RESULT_OK, mIntent);
-                    finish();
-                }
+                Intent mIntent = new Intent();
+                mIntent.putExtra("finalString", finalString);
+                setResult(RESULT_OK, mIntent);
+                finish();
+
             }
         });
+
+        btnLowercase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String finalString = edtName.getText().toString().trim().toLowerCase();
+                Intent mIntent = new Intent();
+                mIntent.putExtra("finalString", finalString);
+                setResult(RESULT_OK, mIntent);
+                finish();
+            }
+        });
+
     }
 }
