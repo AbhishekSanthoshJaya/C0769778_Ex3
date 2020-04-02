@@ -17,6 +17,7 @@ public class OptionsActivity extends AppCompatActivity {
     private Button btnLowercase;
     private Button btnReverse;
     private Button btnFirst;
+    private Button btnFirstName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class OptionsActivity extends AppCompatActivity {
         btnLowercase = findViewById(R.id.btnLowercase);
         btnFirst = findViewById(R.id.btnFirst);
         btnReverse = findViewById(R.id.btnReverse);
+        btnFirstName = findViewById(R.id.btnFirstName);
 
         edtName = findViewById(R.id.edtName);
         Bundle extras = getIntent().getExtras();
@@ -139,7 +141,36 @@ public class OptionsActivity extends AppCompatActivity {
                 alert.show();
             }
         });
+        btnFirstName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                builder.setMessage("CONFIRM ACTION: GET FIRST NAME?");
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String finalString = getFirstName(edtName.getText().toString());
+                        Intent mIntent = new Intent();
+                        mIntent.putExtra("finalString", "FIRST NAME IS: " + finalString);
+                        setResult(RESULT_OK, mIntent);
+                        finish();
+                    }
+                });
+                builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
 
+    }
+
+    private String getFirstName(String name){
+        int firstSpace = name.indexOf(" ");
+        return name.substring(0, firstSpace);
     }
 
     private String reverseString(String someText){
