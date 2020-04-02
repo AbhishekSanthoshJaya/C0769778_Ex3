@@ -23,6 +23,12 @@ public class FirstActivity extends AppCompatActivity {
     public static int REQUEST_FEATURE = 100;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        btnNext.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
