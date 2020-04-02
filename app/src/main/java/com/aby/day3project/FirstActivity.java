@@ -31,10 +31,16 @@ public class FirstActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = edtName.getText().toString();
-                Intent mIntent = new Intent(FirstActivity.this, OptionsActivity.class);
-                mIntent.putExtra("Name", name);
-                startActivityForResult(mIntent, REQUEST_FEATURE);
+                if(edtName.getText().toString().isEmpty())
+                {
+                    edtName.setError("Enter Name");
+                }
+                else {
+                    String name = edtName.getText().toString();
+                    Intent mIntent = new Intent(FirstActivity.this, OptionsActivity.class);
+                    mIntent.putExtra("Name", name);
+                    startActivityForResult(mIntent, REQUEST_FEATURE);
+                }
             }
         });
 
