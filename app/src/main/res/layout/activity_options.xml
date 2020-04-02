@@ -47,4 +47,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnUppercase"
         app:layout_constraintTop_toBottomOf="@+id/edtName" />
+
+    <Button
+        android:id="@+id/btnReverse"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="14dp"
+        android:drawableRight="@drawable/abc_vector_test"
+        android:text="REVERSE"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnLowercase"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnUppercase" />
+
+    <Button
+        android:id="@+id/btnLength"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="28dp"
+        android:drawableRight="@android:drawable/editbox_background"
+        android:text="LENGTH"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnReverse"
+        app:layout_constraintTop_toBottomOf="@+id/btnLowercase" />
 </androidx.constraintlayout.widget.ConstraintLayout>
