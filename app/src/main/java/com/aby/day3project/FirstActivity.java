@@ -17,7 +17,7 @@ public class FirstActivity extends AppCompatActivity {
     private Button btnNext;
     private EditText edtName;
     private TextView txtResult;
-    public static int REQUEST_UPPERCASE = 100;
+    public static int REQUEST_FEATURE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class FirstActivity extends AppCompatActivity {
                 String name = edtName.getText().toString();
                 Intent mIntent = new Intent(FirstActivity.this, OptionsActivity.class);
                 mIntent.putExtra("Name", name);
-                startActivityForResult(mIntent, REQUEST_UPPERCASE);
+                startActivityForResult(mIntent, REQUEST_FEATURE);
             }
         });
 
@@ -46,10 +46,9 @@ public class FirstActivity extends AppCompatActivity {
 
         if(resultCode == RESULT_OK)
         {
-            if(requestCode == REQUEST_UPPERCASE)
+            if(requestCode == REQUEST_FEATURE)
             {
                 String finalString = data.getStringExtra("finalString");
-                //Toast.makeText(FirstActivity.this, newCountryName, Toast.LENGTH_SHORT).show();;
                 txtResult.setText(finalString);
             }
         }

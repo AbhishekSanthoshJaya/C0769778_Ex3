@@ -14,7 +14,7 @@ public class OptionsActivity extends AppCompatActivity {
     private Button btnUppercase;
     private Button btnLowercase;
     private Button btnReverse;
-    private Button btnLength;
+    private Button btnFirst;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +22,7 @@ public class OptionsActivity extends AppCompatActivity {
 
         btnUppercase = findViewById(R.id.btnUppercase);
         btnLowercase = findViewById(R.id.btnLowercase);
-        btnLength = findViewById(R.id.btnLength);
+        btnFirst = findViewById(R.id.btnFirst);
         btnReverse = findViewById(R.id.btnReverse);
 
         edtName = findViewById(R.id.edtName);
@@ -37,7 +37,7 @@ public class OptionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String finalString = edtName.getText().toString().trim().toUpperCase();
                 Intent mIntent = new Intent();
-                mIntent.putExtra("finalString", finalString);
+                mIntent.putExtra("finalString","UPPERCASE: " + finalString);
                 setResult(RESULT_OK, mIntent);
                 finish();
 
@@ -49,18 +49,18 @@ public class OptionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String finalString = edtName.getText().toString().trim().toLowerCase();
                 Intent mIntent = new Intent();
-                mIntent.putExtra("finalString", finalString);
+                mIntent.putExtra("finalString", "LOWERCASE: " + finalString);
                 setResult(RESULT_OK, mIntent);
                 finish();
             }
         });
 
-        btnLength.setOnClickListener(new View.OnClickListener() {
+        btnFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int finalString = edtName.getText().toString().length();
                 Intent mIntent = new Intent();
-                mIntent.putExtra("finalString", finalString);
+                mIntent.putExtra("finalString", "FIRST NAME: " +  finalString);
                 setResult(RESULT_OK, mIntent);
                 finish();
             }
@@ -70,7 +70,7 @@ public class OptionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String finalString = reverseString(edtName.getText().toString());
                 Intent mIntent = new Intent();
-                mIntent.putExtra("finalString", finalString);
+                mIntent.putExtra("finalString", "REVERSED: " + finalString);
                 setResult(RESULT_OK, mIntent);
                 finish();
             }
