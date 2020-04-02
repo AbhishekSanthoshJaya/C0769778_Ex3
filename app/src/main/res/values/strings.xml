@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Day3Project</string>
+    <string name="no_val_received">Sorry, no value received!</string>
+    <string name="valid_entry">Valid Entry, please click Next</string>
+    <string name="invalid_entry">Invalid, enter your full name</string>
 </resources>

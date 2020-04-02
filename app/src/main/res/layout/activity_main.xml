@@ -25,7 +25,7 @@
         android:layout_marginEnd="32dp"
         android:drawableLeft="@android:drawable/ic_menu_edit"
         android:ems="10"
-        android:hint="Enter your name"
+        android:hint="Enter your full name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,4 +55,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnNext"
         app:layout_constraintVertical_bias="0.335" />
+
+    <ImageButton
+        android:id="@+id/imgbtnVerify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.614"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtResult"
+        app:layout_constraintVertical_bias="0.536"
+        app:srcCompat="@android:drawable/checkbox_on_background" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_marginBottom="100dp"
+        android:text="CLICK ->"
+        android:textColor="#FF0505"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imgbtnVerify"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtResult" />
 </androidx.constraintlayout.widget.ConstraintLayout>

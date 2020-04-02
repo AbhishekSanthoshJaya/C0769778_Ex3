@@ -6,9 +6,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class OptionsActivity extends AppCompatActivity {
 
@@ -20,6 +23,29 @@ public class OptionsActivity extends AppCompatActivity {
     private Button btnFirstName;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.first_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.itemAdd:
+                Toast.makeText(getApplicationContext(), "Item Add Selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.itemCancel:
+                Toast.makeText(getApplicationContext(), "Item Cancel", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.itemGoback:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
@@ -101,7 +127,7 @@ public class OptionsActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         int finalString = edtName.getText().toString().length();
                         Intent mIntent = new Intent();
-                        mIntent.putExtra("finalString", "NAME LENGTH " +  finalString);
+                        mIntent.putExtra("finalString", "NAME LENGTH: " +  finalString);
                         setResult(RESULT_OK, mIntent);
                         finish();
                     }
@@ -163,17 +189,22 @@ public class OptionsActivity extends AppCompatActivity {
                 });
                 AlertDialog alert = builder.create();
                 alert.show();
+
             }
         });
-
     }
 
     private String getFirstName(String name){
-        int firstSpace = name.indexOf(" ");
-        return name.substring(0, firstSpace);
+        if(name.contains(" ")) {
+            int firstSpace = name.indexOf(" ");
+            return name.substring(0, firstSpace);
+        }
+        else {
+            return name;
+        }
     }
 
-    private String reverseString(String someText){
+    private String reverseString(String someText) {
         String output = "";
         for (int i = someText.length() - 1; i >= 0; i--) {
             output = output + someText.charAt(i);
