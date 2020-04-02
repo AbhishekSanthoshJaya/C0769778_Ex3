@@ -21,6 +21,7 @@ public class OptionsActivity extends AppCompatActivity {
     private Button btnReverse;
     private Button btnFirst;
     private Button btnFirstName;
+    private Button btnCount;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,6 +60,7 @@ public class OptionsActivity extends AppCompatActivity {
         btnFirst = findViewById(R.id.btnFirst);
         btnReverse = findViewById(R.id.btnReverse);
         btnFirstName = findViewById(R.id.btnFirstName);
+        btnCount = findViewById(R.id.btnCount);
 
         edtName = findViewById(R.id.edtName);
         Bundle extras = getIntent().getExtras();
@@ -70,6 +72,7 @@ public class OptionsActivity extends AppCompatActivity {
         btnUppercase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                builder.setTitle("Are you sure?");
                 builder.setMessage("CONFIRM ACTION: UPPERCASE?");
                 builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
@@ -95,6 +98,7 @@ public class OptionsActivity extends AppCompatActivity {
         btnLowercase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                builder.setTitle("Are you sure?");
                 builder.setMessage("CONFIRM ACTION: LOWERCASE?");
                 builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
@@ -121,6 +125,7 @@ public class OptionsActivity extends AppCompatActivity {
         btnFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                builder.setTitle("Are you sure?");
                 builder.setMessage("CONFIRM ACTION: GET LENGTH?");
                 builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
@@ -146,6 +151,7 @@ public class OptionsActivity extends AppCompatActivity {
         btnReverse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                builder.setTitle("Are you sure?");
                 builder.setMessage("CONFIRM ACTION: REVERSE?");
                 builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
@@ -170,6 +176,7 @@ public class OptionsActivity extends AppCompatActivity {
         btnFirstName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                builder.setTitle("Are you sure?");
                 builder.setMessage("CONFIRM ACTION: GET FIRST NAME?");
                 builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
@@ -192,6 +199,32 @@ public class OptionsActivity extends AppCompatActivity {
 
             }
         });
+            btnCount.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    builder.setTitle("Are you sure?");
+                    builder.setMessage("CONFIRM ACTION: GET NUMBER OF WORDS?");
+                    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Integer finalString = getCount(edtName.getText().toString());
+                            Intent mIntent = new Intent();
+                            mIntent.putExtra("finalString", "NUMBER OF WORDS: " + finalString);
+                            setResult(RESULT_OK, mIntent);
+                            finish();
+                        }
+                    });
+                    builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+                }
+            });
     }
 
     private String getFirstName(String name){
@@ -211,4 +244,10 @@ public class OptionsActivity extends AppCompatActivity {
         }
         return output;
     }
+     private Integer getCount(String name){
+        int count = 0;
+        String[] splitString = name.split(" ");
+        count = splitString.length;
+        return count;
+     }
 }
